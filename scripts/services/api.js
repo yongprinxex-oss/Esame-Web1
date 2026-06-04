@@ -52,11 +52,24 @@ function mapItem(item) {
  */
 async function requestJson(url, errorPrefix) {
     // TODO 1: Implementare la fetch e restituire il JSON parsato
+
+    try{
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`${errorPrefix}: Errore del server (${response.status})`);
+        }
+        const data = await response.json();
+        return data;
+        } catch (error) {
+            console.error(error);
+            throw new Error(`${errorPrefix}: ${error.message}`);
+    }
+    }
     // Il parametro url contiene un già un endpoint completo e bisogna solo fare la chiamata
     // Poi in caso di errore rella risposta, mandare un messaggio di errore che contenga il prefisso errorPrefix e l'eventuale messaggio di errore restituito dalla fetch
     // Infine restituisci i dati parsati come oggetto, senza manipolarli o trasformarli
     // Controlla sempre anche errori di rete o altri errori imprevisti con un catch e restituisci un messaggio di errore coerente con il prefisso
-}
+
 
 /**
  * Recupera gli ID delle top stories.
