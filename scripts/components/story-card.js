@@ -76,18 +76,22 @@ export function createStoryCard({
         <div class="story-card__top">
             <div class="story-card__heading">
                 <p class="story-card__eyebrow">#${sanitizeHTML(story.id)}</p>
-                <h3 class="story-card__title"></h3>
+                <h3 class="story-card__title">
+                <a href="${threadHref}">${sanitizeHTML(story.title)}</a>
+                </h3>
             </div>
             ${actions}
         </div>
-
-        <div class="story-card__meta">
-
+            <div class="story-card__meta">
+            <span class="chip chip--score">${sanitizeHTML(scoreLabel)}</span>
+            <span class="chip chip--comments">${sanitizeHTML(commentsLabel)}</span>
+            <span class="chip chip--time">${sanitizeHTML(timeLabel)}</span>
+            <span class="chip chip--author">${authorLink}</span>
         </div>
 
         <p class="story-card__excerpt">${excerpt}</p>
         <div class="story-card__footer">
-
+           ${sourceLink}
             <span class="story-card__footnote">ID ${sanitizeHTML(story.id)}</span>
         </div>
     `;
